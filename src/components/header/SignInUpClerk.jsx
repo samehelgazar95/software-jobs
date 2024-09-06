@@ -1,11 +1,9 @@
 import { SignIn, SignUp } from '@clerk/clerk-react';
 import { useState } from 'react';
 
-export default function SignInUpClerk({
+export default function SignInUp({
   showSignInOverlay,
-  setShowSignInOverlay,
   showSignUpOverlay,
-  setShowSignUpOverlay,
   handleLayoutClick,
 }) {
   return (

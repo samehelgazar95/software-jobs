@@ -14,7 +14,7 @@ export default function Header() {
   const [showSignUpOverlay, setShowSignUpOverlay] = useState(false);
 
   useEffect(() => {
-    if (searchParams.get('sign-in') == true) {
+    if (searchParams.get('sign-in')) {
       setShowSignInOverlay(true);
     }
   }, [searchParams]);
@@ -58,9 +58,7 @@ export default function Header() {
 
         <SignInUpClerk
           showSignInOverlay={showSignInOverlay}
-          setShowSignInOverlay={setShowSignInOverlay}
           showSignUpOverlay={showSignUpOverlay}
-          setShowSignUpOverlay={setShowSignUpOverlay}
           handleLayoutClick={handleLayoutClick}
         />
       </nav>

@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import { daysSince, numberWithCommas } from '@/lib/utils';
 import { Bookmark } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
-export function JobCard({ job }) {
+export function JobCard({ job, onJobClick }) {
   return (
-    <li className="border-solid border-slate-200 border-2 rounded-md mb-4 hover:border-slate-300 hover:shadow-lg hover:bg-slate-50 transition-all duration-300">
-      <Link className="block p-4">
+    <li
+      className="border-solid border-slate-200 border-2 rounded-md mb-4 hover:border-slate-300 hover:shadow-lg hover:bg-slate-50 transition-all duration-300"
+      onClick={onJobClick}
+    >
+      <NavLink className="block p-4">
         <div className="flex justify-between items-center mb-2">
           <span className="flex flex-col">
             <h3 className="text-lg font-semibold text-slate-800">
@@ -18,7 +21,15 @@ export function JobCard({ job }) {
           </span>
           <span className="flex gap-2 items-center text-slate-500">
             <p className="text-sm">{daysSince(new Date(job.createdAt))}d</p>
-            <Bookmark size={20} />
+            {job.bookmarked ? (
+              <Bookmark
+                size={20}
+                fill="rgb(34, 197, 94)"
+                className="text-green-500"
+              />
+            ) : (
+              <Bookmark size={20} />
+            )}
           </span>
         </div>
 
@@ -43,7 +54,7 @@ export function JobCard({ job }) {
             Description: {job.description}
           </p>
         </div>
-      </Link>
+      </NavLink>
     </li>
   );
 }

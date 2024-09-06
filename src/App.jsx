@@ -1,16 +1,16 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ClerkProvider } from '@clerk/clerk-react';
+import PageProtector from './components/PageProtector';
 import AppLayout from './pages/AppLayout';
 import ErrorPage from './pages/ErrorPage';
-import JobListingPage from './pages/JobListingPage';
 import LandingPage from './pages/LandingPage';
-import JobPage from './pages/JobPage';
-import PostJobPage from './pages/PostJobPage';
-import SavedJobsPage from './pages/SavedJobsPage';
-import MyJobsPage from './pages/MyJobsPage';
 import OnboardingPage from './pages/OnboardingPage';
-import ApplicationsPage from './pages/ApplicationsPage';
-import PageProtector from './components/PageProtector';
+import Jobs from './pages/Jobs';
+import JobPage from './pages/JobPage';
+import PostJobPage from './pages/recruiter/PostJobPage';
+import MyJobsPage from './pages/recruiter/MyJobsPage';
+import BookmarksPage from './pages/candidate/BookmarksPage';
+import ApplicationsPage from './pages/candidate/ApplicationsPage';
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -41,7 +41,7 @@ export default function App() {
           path: '/jobs',
           element: (
             <PageProtector>
-              <JobListingPage />
+              <Jobs />
             </PageProtector>
           ),
         },
@@ -73,7 +73,7 @@ export default function App() {
           path: '/bookmarks',
           element: (
             <PageProtector>
-              <SavedJobsPage />
+              <BookmarksPage />
             </PageProtector>
           ),
         },
