@@ -7,7 +7,7 @@ import {
 } from '@radix-ui/react-dropdown-menu';
 import { ChevronDown } from 'lucide-react';
 
-export default function Filters() {
+export default function JobsFilters() {
   return (
     <section className="px-10 py-6 xl:w-2/3 xl:mx-auto">
       <div className="flex flex-wrap gap-6 justify-center">

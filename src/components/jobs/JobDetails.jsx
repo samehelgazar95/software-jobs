@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Bookmark } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Button } from './ui/button';
+import { Button } from '@/components/ui/button';
 import { numberWithCommas } from '@/lib/utils';
 
 export default function JobDetails({ job }) {

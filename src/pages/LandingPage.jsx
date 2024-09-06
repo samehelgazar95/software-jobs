@@ -1,15 +1,15 @@
-import Filters from '@/components/landing_page/Filters';
+import JobsFilters from '@/components/jobs/JobsFilters';
 import Hero from '@/components/landing_page/Hero';
-import Jobs from '@/components/landing_page/Jobs';
+import AvailableJobs from '@/components/jobs/AvailableJobs';
 
 export default function LandingPage() {
   return (
     <div>
       <Hero />
 
-      <Filters />
+      <JobsFilters />
 
-      <Jobs />
+      <AvailableJobs />
     </div>
   );
 }

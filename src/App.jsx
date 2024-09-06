@@ -9,6 +9,7 @@ import PostJobPage from './pages/PostJobPage';
 import SavedJobsPage from './pages/SavedJobsPage';
 import MyJobsPage from './pages/MyJobsPage';
 import OnboardingPage from './pages/OnboardingPage';
+import ApplicationsPage from './pages/ApplicationsPage';
 import PageProtector from './components/PageProtector';
 
 // Import your publishable key
@@ -61,7 +62,15 @@ export default function App() {
           ),
         },
         {
-          path: '/saved-jobs',
+          path: '/my-jobs',
+          element: (
+            <PageProtector>
+              <MyJobsPage />
+            </PageProtector>
+          ),
+        },
+        {
+          path: '/bookmarks',
           element: (
             <PageProtector>
               <SavedJobsPage />
@@ -69,10 +78,10 @@ export default function App() {
           ),
         },
         {
-          path: '/my-jobs',
+          path: '/applications',
           element: (
             <PageProtector>
-              <MyJobsPage />
+              <ApplicationsPage />
             </PageProtector>
           ),
         },

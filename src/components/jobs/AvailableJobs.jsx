@@ -1,8 +1,8 @@
-import { jobs } from '../../lib/data';
-import { JobCard } from '../JobCard';
-import JobDetails from '../JobDetails';
+import { jobs } from '@/lib/data';
+import { JobCard } from './JobCard';
+import JobDetails from './JobDetails';
 
-export default function Jobs() {
+export default function AvailableJobs() {
   return (
     <section className="grid md:grid-cols-3 gap-2 px-4 xl:container mx-auto">
       <div className="md:col-span-1">
