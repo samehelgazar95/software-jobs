@@ -5,8 +5,12 @@ import { Button } from '@/components/ui/button';
 import { numberWithCommas } from '@/lib/utils';
 import { useUser } from '@clerk/clerk-react';
 
-export default function JobDetails({ job }) {
+export default function JobDetails({ job, onBookmarkClick }) {
   const { user } = useUser();
+
+  const handleBookmarkClick = () => {
+    onBookmarkClick(job.id);
+  };
 
   return (
     <div className="p-6 max-w-4xl mx-auto bg-white shadow-lg rounded-lg border-2 border-solid border-slate-200  sticky top-4">
@@ -27,6 +31,7 @@ export default function JobDetails({ job }) {
               <Button
                 variant="ghost"
                 className="text-slate-500 hover:text-green-500"
+                onClick={handleBookmarkClick}
               >
                 {job.bookmarked ? (
                   <Bookmark

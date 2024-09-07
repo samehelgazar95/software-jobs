@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section className="container mx-auto py-10">
+    <section className="container mx-auto py-6">
       <div className="flex justify-between gap-6 px-8">
         <div className="w-[250px] hidden lg:block">
           <img src="hero-1.webp" alt="hero-1" />
