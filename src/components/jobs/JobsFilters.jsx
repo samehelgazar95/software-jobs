@@ -6,16 +6,14 @@ import {
   DropdownMenuTrigger,
 } from '@radix-ui/react-dropdown-menu';
 import { ChevronDown } from 'lucide-react';
-import { jobs } from '@/lib/data';
 
-export default function JobsFilters({ setFilterValue, setFilteredJobs }) {
-  const handleFilterRole = (role) => {
-    setFilteredJobs(() =>
-      jobs.filter((ele) => ele.title.toLowerCase() === role.toLowerCase())
-    );
-    setFilterValue(role);
-  };
-
+export default function JobsFilters({
+  setFilterTitle,
+  setFilterSearchQuery,
+  setFilterCompanyId,
+  setFilterCountry,
+  setFilterCity,
+}) {
   return (
     <section className="px-10 py-6 xl:w-2/3 xl:mx-auto">
       <div className="flex flex-wrap gap-6 justify-center">
@@ -39,7 +37,7 @@ export default function JobsFilters({ setFilterValue, setFilteredJobs }) {
                   <DropdownMenuItem
                     key={role}
                     className="cursor-pointer px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-700 transition-colors"
-                    onClick={() => handleFilterRole(role)}
+                    onClick={() => setFilterTitle(role.toLowerCase())}
                   >
                     {role}
                   </DropdownMenuItem>

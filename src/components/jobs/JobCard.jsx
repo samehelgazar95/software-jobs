@@ -3,6 +3,14 @@ import { daysSince, numberWithCommas } from '@/lib/utils';
 import { Bookmark } from 'lucide-react';
 import { Link, NavLink } from 'react-router-dom';
 
+/*
+title, createdAt, description, country, city,requirements: technicalQualifications,
+isOPen: available, work_mode: workMode,min-experience, max-experience, salary: averageSalary,
+currency, job_type: jobType, level, recruiter_id, company_id
+
+companyName, bookmarked, applied, industry
+*/
+
 export function JobCard({ job, onJobClick }) {
   return (
     <li

@@ -5,7 +5,7 @@ import AppLayout from './pages/AppLayout';
 import ErrorPage from './pages/ErrorPage';
 import LandingPage from './pages/LandingPage';
 import OnboardingPage from './pages/OnboardingPage';
-import Jobs from './pages/Jobs';
+import JobsPage from './pages/JobsPage';
 import JobPage from './pages/JobPage';
 import PostJobPage from './pages/recruiter/PostJobPage';
 import MyJobsPage from './pages/recruiter/MyJobsPage';
@@ -41,7 +41,7 @@ export default function App() {
           path: '/jobs',
           element: (
             <PageProtector>
-              <Jobs />
+              <JobsPage />
             </PageProtector>
           ),
         },
