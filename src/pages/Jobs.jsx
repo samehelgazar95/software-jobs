@@ -2,10 +2,31 @@ import { useEffect, useState } from 'react';
 import JobsFilters from '@/components/jobs/JobsFilters';
 import AvailableJobs from '@/components/jobs/AvailableJobs';
 import { jobs } from '@/lib/data';
+import { useSession } from '@clerk/clerk-react';
+import { getJobs } from '@/api/jobsApi';
 
 export default function Jobs() {
   const [filteredJobs, setFilteredJobs] = useState(jobs);
   const [filterValue, setFilterValue] = useState('');
+  const { session } = useSession();
+
+  const fetchJobs = async () => {
+    if (session) {
+      console.log(session);
+      const token = await session.getToken({
+        template: 'supabase',
+      });
+      console.log(token);
+      const data = await getJobs(token);
+      console.log(data);
+    } else {
+      console.log('No session');
+    }
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, [session]);
 
   return (
     <div>
@@ -13,6 +34,7 @@ export default function Jobs() {
         setFilterValue={setFilterValue}
         setFilteredJobs={setFilteredJobs}
       />
+
       {filteredJobs.length > 0 ? (
         <AvailableJobs filteredJobs={filteredJobs} />
       ) : (

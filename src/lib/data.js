@@ -42,7 +42,6 @@ export const categories = [
       'Security Tester',
     ],
   },
-
   {
     category: 'Software Management & Architecture',
     roles: [
@@ -112,8 +111,8 @@ export const jobs = [
     createdAt: '2024-8-15',
     companyName: 'CodeWithUs',
     location: { city: 'Shebin', country: 'Egypt' },
-    workMode: 'On-site',
     title: 'Frontend Developer',
+    workMode: 'On-site',
     level: 'Junior',
     experience: { min: 2, max: 3 },
     averageSalary: 10000,

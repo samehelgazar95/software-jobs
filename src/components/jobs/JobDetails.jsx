@@ -9,7 +9,7 @@ export default function JobDetails({ job, onBookmarkClick }) {
   const { user } = useUser();
 
   const handleBookmarkClick = () => {
-    onBookmarkClick(job.id);
+    onBookmarkClick(job?.id);
   };
 
   return (
@@ -33,7 +33,7 @@ export default function JobDetails({ job, onBookmarkClick }) {
                 className="text-slate-500 hover:text-green-500"
                 onClick={handleBookmarkClick}
               >
-                {job.bookmarked ? (
+                {job?.bookmarked ? (
                   <Bookmark
                     fill="rgb(34, 197, 94)"
                     className="text-green-500"
@@ -45,12 +45,12 @@ export default function JobDetails({ job, onBookmarkClick }) {
               <Link
                 to="/"
                 className={`${
-                  job.applied
+                  job?.applied
                     ? 'bg-orange-500'
                     : 'bg-green-500 hover:bg-green-600 transition-colors'
                 } text-white p-2 rounded font-semibold`}
               >
-                {job.applied ? 'Applied for it' : 'Apply on employer site'}
+                {job?.applied ? 'Applied for it' : 'Apply on employer site'}
               </Link>
             </>
           )}
@@ -60,7 +60,7 @@ export default function JobDetails({ job, onBookmarkClick }) {
                 job.available ? 'bg-green-400' : 'bg-red-400'
               }`}
             >
-              Status: {job.available ? 'Open' : 'Closed'}
+              Status: {job?.available ? 'Open' : 'Closed'}
             </span>
           )}
         </div>

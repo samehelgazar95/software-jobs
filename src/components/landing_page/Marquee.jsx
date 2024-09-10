@@ -5,43 +5,55 @@ import Marquee from '@/components/magicui/marquee';
 const reviews = [
   {
     name: 'Microsoft',
-    img: 'microsoft.webp',
+    img: 'microsoft.svg',
   },
   {
     name: 'Apple',
-    img: 'apple.png',
+    img: 'apple.svg',
   },
   {
     name: 'Google',
-    img: 'google.png',
+    img: 'google.svg',
   },
   {
     name: 'Amazon',
-    img: 'amazon.png',
+    img: 'amazon.svg',
+  },
+  {
+    name: 'Meta',
+    img: 'meta.svg',
   },
   {
     name: 'IBM',
-    img: 'ibm.png',
+    img: 'ibm.svg',
+  },
+  {
+    name: 'Uber',
+    img: 'uber.svg',
   },
   {
     name: 'Salesforce',
-    img: 'salesforce.png',
+    img: 'salesforce.svg',
   },
   {
     name: 'Adobe',
-    img: 'adobe.png',
+    img: 'adobe.svg',
   },
   {
     name: 'VMware',
-    img: 'vmware.png',
+    img: 'vmware.svg',
   },
   {
     name: 'Cisco',
-    img: 'cisco.png',
+    img: 'cisco.svg',
+  },
+  {
+    name: 'Atlassian',
+    img: 'atlassian.svg',
   },
   {
     name: 'Slack',
-    img: 'slack.webp',
+    img: 'slack.svg',
   },
 ];
 
@@ -60,7 +72,7 @@ const ReviewCard = ({ img, name }) => {
         <img
           className="w-full h-24 object-contain rounded-3xl"
           alt={name}
-          src={img}
+          src={`/${img}`}
         />
       </div>
     </figure>

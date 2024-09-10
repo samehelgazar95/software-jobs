@@ -1,0 +1,11 @@
+id,created_at,title,company_id,description,country,requirements,isOpen,work_mode,min_experience,max_experience,salary,currency,job_type,level,city
+1,2024-09-01 12:00:00,Frontend Developer,1,Develop and maintain frontend components.,USA,"React, JavaScript, CSS",True,remote,2,4,60000,USD,full,junior,San Francisco
+2,2024-09-02 12:00:00,Backend Developer,1,Build and optimize backend systems.,Canada,"Node.js, Express, MongoDB",True,site,3,5,70000,USD,part,mid,Toronto
+3,2024-09-03 12:00:00,Full Stack Developer,1,Work on both frontend and backend systems.,USA,"React, Node.js, Full-Stack",False,hybrid,4,6,80000,USD,contract,senior,New York
+4,2024-09-04 12:00:00,DevOps Engineer,1,Manage cloud infrastructure and deployments.,UK,"AWS, Docker, Kubernetes",True,remote,5,8,90000,GBP,full,mid,London
+5,2024-09-05 12:00:00,Data Scientist,1,Analyze data and build machine learning models.,Germany,"Python, TensorFlow, Machine Learning",True,site,2,5,100000,EUR,full,junior,Berlin
+6,2024-09-06 12:00:00,Product Manager,1,Manage the product lifecycle and team.,France,"Agile, Scrum, Management",False,hybrid,3,6,110000,EUR,part,senior,Paris
+7,2024-09-07 12:00:00,Mobile Developer,1,Develop mobile applications.,India,"React Native, Swift, Kotlin",True,remote,1,3,120000,INR,contract,junior,Mumbai
+8,2024-09-08 12:00:00,Cloud Architect,1,Design cloud solutions and architecture.,Australia,"AWS, Azure, Cloud Services",False,site,6,9,130000,AUD,full,mid,Sydney
+9,2024-09-09 12:00:00,UI/UX Designer,1,Create intuitive UI/UX designs.,Brazil,"Figma, Adobe XD, Sketch",True,hybrid,4,7,140000,BRL,contract,senior,Rio de Janeiro
+10,2024-09-10 12:00:00,QA Engineer,1,Ensure software quality through testing.,Japan,"Selenium, TestNG, JUnit",True,remote,3,5,150000,JPY,full,mid,Tokyo

@@ -12,8 +12,6 @@ export default function AvailableJobs({ filteredJobs }) {
     console.log(filteredJobs[id]);
   };
 
-  console.log(filteredJobs);
-
   return (
     <section className="grid md:grid-cols-3 gap-2 px-4 xl:container mx-auto">
       <div className="md:col-span-1">
