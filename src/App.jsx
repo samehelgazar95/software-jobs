@@ -46,7 +46,7 @@ export default function App() {
           ),
         },
         {
-          path: '/job/:jobId',
+          path: '/job/:job_id',
           element: (
             <PageProtector>
               <JobPage />

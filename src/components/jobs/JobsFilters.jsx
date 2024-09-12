@@ -1,52 +1,139 @@
-import { categories } from '@/lib/data';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@radix-ui/react-dropdown-menu';
-import { ChevronDown } from 'lucide-react';
+// import { categories } from '@/lib/data';
+// import {
+//   Select,
+//   SelectContent,
+//   SelectGroup,
+//   SelectItem,
+//   SelectLabel,
+//   SelectTrigger,
+//   SelectValue,
+// } from '@/components/ui/select';
+// import { Button } from '@/components/ui/button';
+// import countries from 'i18n-iso-countries';
+// import enLocale from 'i18n-iso-countries/langs/en.json';
+// import { Input } from 'postcss';
 
-export default function JobsFilters({
-  setFilterTitle,
-  setFilterSearchQuery,
-  setFilterCompanyId,
-  setFilterCountry,
-  setFilterCity,
-}) {
-  return (
-    <section className="px-10 py-6 xl:w-2/3 xl:mx-auto">
-      <div className="flex flex-wrap gap-6 justify-center">
-        {categories.map((jobCategory) => (
-          <div
-            key={jobCategory.category}
-            className="category-section bg-white shadow-lg hover:shadow-xl transition-shadow px-6 py-3 rounded-lg"
-          >
-            {/* Display category heading */}
-            <DropdownMenu>
-              {/* Trigger for category dropdown */}
-              <DropdownMenuTrigger className="text-lg font-semibold text-gray-700 hover:text-green-600 focus:outline-none">
-                {jobCategory.category} <ChevronDown className="inline" />
-              </DropdownMenuTrigger>
-              {/* Dropdown content for each category */}
-              <DropdownMenuContent
-                className="w-64 bg-white shadow-md rounded-md py-2 z-20"
-                sideOffset={5}
-              >
-                {jobCategory.roles.map((role) => (
-                  <DropdownMenuItem
-                    key={role}
-                    className="cursor-pointer px-4 py-2 text-gray-600 hover:bg-green-50 hover:text-green-700 transition-colors"
-                    onClick={() => setFilterTitle(role.toLowerCase())}
-                  >
-                    {role}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+// countries.registerLocale(enLocale); // Register English locale
+
+// export default function JobsFilters({
+//   setSearchQuery,
+//   setFilterCompanyId,
+//   setFilterCountry,
+//   dataCompanies,
+// }) {
+//   const countryList = countries.getNames('en', { select: 'official' }); // Get the country names
+//   const countryOptions = Object.entries(countryList); // Convert to [code, name] pairs
+
+//   const cleatFiltersHandler = () => {
+//     setSearchQuery('');
+//     setFilterCompanyId('');
+//     setFilterCountry('');
+//   };
+
+//   const handleSearch = (e) => {
+//     e.preventDefault();
+//     setSearchQuery(searchQuery); // Update filterTitle with the search query
+//   };
+
+//   return (
+//     <section className="px-10 py-6 xl:w-2/3 xl:mx-auto">
+//       <form
+//         onSubmit={handleSearch}
+//         className="h-14 flex flex-row w-full gap-2 items-center mb-3"
+//       >
+//         <Input
+//           type="text"
+//           placeholder="Search Jobs by Title.."
+//           name="search-query"
+//           onChange={(e) => setSearchQuery(e.target.value)}
+//           className="h-full flex-1 px-4 text-md"
+//         />
+//         <Button type="submit" className="h-full sm:w-28" variant="blue">
+//           Search
+//         </Button>
+//       </form>
+//     </section>
+//   );
+// }
+
+// // <div className="flex flex-wrap gap-6 justify-center">
+// //         {/* Category Select Dropdown */}
+// //         <div>
+// //           <Select>
+// //             <SelectTrigger className="w-[180px]">
+// //               <SelectValue placeholder="Select a category" />
+// //             </SelectTrigger>
+// //             <SelectContent>
+// //               <SelectGroup>
+// //                 <SelectLabel>Categories</SelectLabel>
+// //                 {categories.map((jobCategory) => (
+// //                   <SelectItem
+// //                     key={jobCategory.category}
+// //                     value={jobCategory.category}
+// //                     onClick={() =>
+// //                       setFilterTitle(jobCategory.category.toLowerCase())
+// //                     }
+// //                   >
+// //                     {jobCategory.category}
+// //                   </SelectItem>
+// //                 ))}
+// //               </SelectGroup>
+// //             </SelectContent>
+// //           </Select>
+// //         </div>
+// //       </div>
+
+// //       <div className="flex pt-6 justify-center gap-6">
+// //         {/* Country Select Dropdown */}
+// //         <div>
+// //           <Select>
+// //             <SelectTrigger className="w-[180px]">
+// //               <SelectValue placeholder="Select a country" />
+// //             </SelectTrigger>
+// //             <SelectContent>
+// //               <SelectGroup>
+// //                 <SelectLabel>Countries</SelectLabel>
+// //                 {countryOptions?.map(([code, name]) => (
+// //                   <SelectItem
+// //                     key={code}
+// //                     value={code}
+// //                     onClick={() => setFilterCountry(code)}
+// //                   >
+// //                     {name}
+// //                   </SelectItem>
+// //                 ))}
+// //               </SelectGroup>
+// //             </SelectContent>
+// //           </Select>
+// //         </div>
+
+// //         {/* Company Select Dropdown */}
+// //         <div>
+// //           <Select>
+// //             <SelectTrigger className="w-[180px]">
+// //               <SelectValue placeholder="Select a company" />
+// //             </SelectTrigger>
+// //             <SelectContent>
+// //               <SelectGroup>
+// //                 <SelectLabel>Companies</SelectLabel>
+// //                 {dataCompanies?.map((company) => (
+// //                   <SelectItem
+// //                     key={company?.id}
+// //                     value={company?.name}
+// //                     onClick={() => setFilterCompanyId(company?.id)}
+// //                   >
+// //                     {company?.name}
+// //                   </SelectItem>
+// //                 ))}
+// //               </SelectGroup>
+// //             </SelectContent>
+// //           </Select>
+// //         </div>
+
+// //         {/* Clear Filters Button */}
+// //         <div>
+// //           <Button variant="outline" onClick={cleatFiltersHandler}>
+// //             Clear Filters
+// //           </Button>
+// //         </div>
+// //       </div>

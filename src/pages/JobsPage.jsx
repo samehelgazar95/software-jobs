@@ -1,75 +1,158 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import JobsFilters from '@/components/jobs/JobsFilters';
-import AvailableJobs from '@/components/jobs/AvailableJobs';
-import { getJobs } from '@/api/jobsApi';
-import useFetch from '@/hooks/useFetch';
 import { useUser } from '@clerk/clerk-react';
+import { Country } from 'country-state-city'; // Use Country instead of State
+import { BarLoader } from 'react-spinners';
+import useFetch from '@/hooks/useFetch';
+import JobCard from '@/components/jobs/JobCard';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { getCompanies } from '@/api/companiesApi';
+import { getJobs } from '@/api/jobsApi';
 import Loader from '@/components/Loader';
-import Error from '@/components/Error';
 
-export default function Jobs() {
-  const [filterTitle, setFilterTitle] = useState('');
-  const [filterSearchQuery, setFilterSearchQuery] = useState('');
-  const [filterCompanyId, setFilterCompanyId] = useState('');
-  const [filterCountry, setFilterCountry] = useState('');
-  const [filterCity, setFilterCity] = useState('');
+const JobListing = () => {
   const { isLoaded } = useUser();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [country, setCountry] = useState(''); // Rename from location to country
+  const [company_id, setCompany_id] = useState('');
+  const { data: companies, fn: fnCompanies } = useFetch(getCompanies);
   const {
-    fn: fnJobs,
-    data: dataJobs,
     loading: loadingJobs,
-    error: errorJobs,
+    data: jobs,
+    fn: fnJobs,
   } = useFetch(getJobs, {
-    filterTitle,
-    filterSearchQuery,
-    filterCompanyId,
-    filterCountry,
-    filterCity,
+    country, // Use country here
+    company_id,
+    searchQuery,
   });
 
   useEffect(() => {
+    if (isLoaded) {
+      fnCompanies();
+    }
+  }, [isLoaded]);
+
+  useEffect(() => {
     if (isLoaded) fnJobs();
-  }, [
-    isLoaded,
-    filterTitle,
-    filterSearchQuery,
-    filterCompanyId,
-    filterCountry,
-    filterCity,
-  ]);
+  }, [isLoaded, country, company_id, searchQuery]); // Update dependency
 
-  console.log('dataJobs: ', dataJobs);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    let formData = new FormData(e.target);
+    const query = formData.get('search-query');
+    if (query) setSearchQuery(query);
+  };
 
-  if (loadingJobs) {
+  const clearFilters = () => {
+    setSearchQuery('');
+    setCompany_id('');
+    setCountry('');
+  };
+
+  if (!isLoaded) {
     return <Loader />;
   }
 
-  if (errorJobs) {
-    return <Error>{errorJobs}</Error>;
-  }
-
   return (
-    <div>
-      <JobsFilters
-        setFilterTitle={setFilterTitle}
-        setFilterSearchQuery={setFilterSearchQuery}
-        setFilterCompanyId={setFilterCompanyId}
-        setFilterCountry={setFilterCountry}
-        setFilterCity={setFilterCity}
-      />
-      <p>{dataJobs?.length ? dataJobs[0]?.title : 'No Jobs'}</p>
-      {/* {dataJobs.length ? (
-        <AvailableJobs dataJobs={dataJobs} />
-      ) : (
-        <h2 className="bg-red-300 w-3/4 text-center font-semibold text-xl py-4 mx-auto text-slate-800 rounded-xl">
-          No available jobs for{' '}
-          <span className="text-black underline underline-offset-4 decoration-4 decoration-green-500">
-            {filterValue}
-          </span>{' '}
-          role.
-        </h2>
-      )} */}
+    <div className="container mx-auto px-10 lg:px-32">
+      <h1 className="font-extrabold text-6xl sm:text-7xl text-center pb-8">
+        Latest Jobs
+      </h1>
+      <form
+        onSubmit={handleSearch}
+        className="h-14 flex flex-row w-full gap-2 items-center mb-3"
+      >
+        <Input
+          type="text"
+          placeholder="Search Jobs by Title.."
+          name="search-query"
+          className="h-full flex-1  px-4 text-md"
+        />
+        <Button
+          type="submit"
+          className="h-full sm:w-28 text-xl font-bold"
+          variant="green"
+        >
+          Search
+        </Button>
+      </form>
+
+      <div className="flex flex-col sm:flex-row gap-2">
+        <Select value={country} onValueChange={(value) => setCountry(value)}>
+          <SelectTrigger>
+            <SelectValue placeholder="Filter by Country" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {Country.getAllCountries().map(({ name, isoCode }) => {
+                return (
+                  <SelectItem key={isoCode} value={name}>
+                    {name}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+
+        <Select
+          value={company_id}
+          onValueChange={(value) => setCompany_id(value)}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Filter by Company" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              {companies?.map(({ name, id }) => {
+                return (
+                  <SelectItem key={id} value={id}>
+                    {name}
+                  </SelectItem>
+                );
+              })}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <Button
+          className="sm:w-1/2 text-lg font-semibold text-white"
+          variant="blue"
+          onClick={clearFilters}
+        >
+          Clear Filters
+        </Button>
+      </div>
+
+      {loadingJobs && <Loader />}
+
+      {loadingJobs === false && (
+        <ul className="mt-8 grid md:grid-cols-2 gap-4">
+          {jobs?.length ? (
+            jobs.map((job) => {
+              return (
+                <JobCard
+                  key={job.id}
+                  job={job}
+                  savedInit={job?.saved?.length > 0}
+                />
+              );
+            })
+          ) : (
+            <div>No Jobs Found 😢</div>
+          )}
+        </ul>
+      )}
     </div>
   );
-}
+};
+
+export default JobListing;

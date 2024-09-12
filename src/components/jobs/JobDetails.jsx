@@ -17,12 +17,12 @@ export default function JobDetails({ job, onBookmarkClick }) {
       <div className="flex flex-col lg:flex-row lg:justify-between mb-6">
         <div className="flex flex-col mb-4 lg:mb-0">
           <h3 className="text-2xl font-semibold text-slate-800 mb-2">
-            {job?.companyName}
+            {job?.company?.name}
           </h3>
           <h2 className="text-xl font-bold text-slate-900 mb-2">
             {job?.level} {job?.title}
           </h2>
-          <p className="text-sm text-slate-600">{job?.location?.city}</p>
+          <p className="text-sm text-slate-600">{job?.city}</p>
         </div>
 
         <div className="flex items-center gap-4">
@@ -42,6 +42,7 @@ export default function JobDetails({ job, onBookmarkClick }) {
                   <Bookmark />
                 )}
               </Button>
+
               <Link
                 to="/"
                 className={`${
@@ -57,10 +58,10 @@ export default function JobDetails({ job, onBookmarkClick }) {
           {user?.unsafeMetadata?.role === 'recruiter' && (
             <span
               className={`p-2 rounded font-medium ${
-                job.available ? 'bg-green-400' : 'bg-red-400'
+                job?.is_open ? 'bg-green-400' : 'bg-red-400'
               }`}
             >
-              Status: {job?.available ? 'Open' : 'Closed'}
+              Status: {job?.is_open ? 'Open' : 'Closed'}
             </span>
           )}
         </div>
@@ -77,22 +78,22 @@ export default function JobDetails({ job, onBookmarkClick }) {
         </div>
         <div className="space-y-1">
           <p>
-            {job?.location?.country}, {job?.location?.city}
+            {job?.country}, {job?.city}
           </p>
-          <p>{job?.industry}</p>
-          <p>{job?.workMode}</p>
+          {/* <p>{job?.industry}</p> */}
+          <p>{job?.work_mode}</p>
           <p>
-            {job?.experience?.min} - {job?.experience?.max} years
+            {job?.min_experience} - {job?.max_experience} years
           </p>
           <p>
             {new Intl.DateTimeFormat('en-US', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
-            }).format(new Date(job?.createdAt))}
+            }).format(new Date(job?.created_at))}
           </p>
           <p>
-            {numberWithCommas(job?.averageSalary)} {job?.currency}
+            {numberWithCommas(job?.salary)} {job?.currency}
           </p>
         </div>
       </div>
@@ -110,7 +111,7 @@ export default function JobDetails({ job, onBookmarkClick }) {
             Technical Qualifications:
           </h3>
           <ul className="list-disc pl-5 text-sm text-slate-700">
-            {job?.technicalQualifications.map((qualification) => (
+            {job?.requirements.split(', ').map((qualification) => (
               <li key={qualification}>{qualification}</li>
             ))}
           </ul>
