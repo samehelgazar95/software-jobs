@@ -1,11 +1,21 @@
-id,created_at,title,company_id,description,country,requirements,isOpen,work_mode,min_experience,max_experience,salary,currency,job_type,level,city
-1,2024-09-01 12:00:00,Frontend Developer,1,Develop and maintain frontend components.,USA,"React, JavaScript, CSS",True,remote,2,4,60000,USD,full,junior,San Francisco
-2,2024-09-02 12:00:00,Backend Developer,1,Build and optimize backend systems.,Canada,"Node.js, Express, MongoDB",True,site,3,5,70000,USD,part,mid,Toronto
-3,2024-09-03 12:00:00,Full Stack Developer,1,Work on both frontend and backend systems.,USA,"React, Node.js, Full-Stack",False,hybrid,4,6,80000,USD,contract,senior,New York
-4,2024-09-04 12:00:00,DevOps Engineer,1,Manage cloud infrastructure and deployments.,UK,"AWS, Docker, Kubernetes",True,remote,5,8,90000,GBP,full,mid,London
-5,2024-09-05 12:00:00,Data Scientist,1,Analyze data and build machine learning models.,Germany,"Python, TensorFlow, Machine Learning",True,site,2,5,100000,EUR,full,junior,Berlin
-6,2024-09-06 12:00:00,Product Manager,1,Manage the product lifecycle and team.,France,"Agile, Scrum, Management",False,hybrid,3,6,110000,EUR,part,senior,Paris
-7,2024-09-07 12:00:00,Mobile Developer,1,Develop mobile applications.,India,"React Native, Swift, Kotlin",True,remote,1,3,120000,INR,contract,junior,Mumbai
-8,2024-09-08 12:00:00,Cloud Architect,1,Design cloud solutions and architecture.,Australia,"AWS, Azure, Cloud Services",False,site,6,9,130000,AUD,full,mid,Sydney
-9,2024-09-09 12:00:00,UI/UX Designer,1,Create intuitive UI/UX designs.,Brazil,"Figma, Adobe XD, Sketch",True,hybrid,4,7,140000,BRL,contract,senior,Rio de Janeiro
-10,2024-09-10 12:00:00,QA Engineer,1,Ensure software quality through testing.,Japan,"Selenium, TestNG, JUnit",True,remote,3,5,150000,JPY,full,mid,Tokyo
+id,created_at,title,description,country,requirements,is_open,work_mode,min_experience,max_experience,salary,currency,job_type,level,city,recruiter_id
+1,2024-09-01T10:00:00Z,frontend developer,develop responsive web interfaces,egypt,"react, javascript, css",true,remote,2,4,8000,egp,full time,junior,cairo,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+2,2024-09-02T11:00:00Z,backend developer,build rest apis and manage databases,egypt,"node.js, express, sql",true,hybrid,3,5,10000,egp,full time,mid,alexandria,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+3,2024-09-03T12:00:00Z,data analyst,analyze data and create reports,egypt,"python, sql, excel",true,remote,1,3,7000,egp,part time,junior,giza,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+4,2024-09-04T13:00:00Z,project manager,manage software development projects,egypt,"pmp, agile, communication",true,on site,5,7,15000,egp,full time,senior,cairo,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+5,2024-09-05T14:00:00Z,ui/ux designer,design user-friendly interfaces,egypt,"figma, adobe xd, css",true,remote,2,4,9000,egp,contract,mid,tanta,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+6,2024-09-06T15:00:00Z,devops engineer,manage cloud infrastructure,egypt,"aws, docker, jenkins",true,hybrid,3,5,12000,egp,full time,mid,ismailia,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+7,2024-09-07T16:00:00Z,mobile app developer,develop mobile applications,egypt,"flutter, dart, rest apis",true,on site,2,4,9500,egp,full time,junior,cairo,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+8,2024-09-08T17:00:00Z,machine learning engineer,develop ml models,egypt,"python, tensorflow, scikit-learn",true,remote,4,6,14000,egp,full time,senior,alexandria,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+9,2024-09-09T18:00:00Z,system administrator,manage it infrastructure,egypt,"linux, networking, shell scripting",true,on site,3,5,11000,egp,full time,mid,assiut,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+10,2024-09-10T19:00:00Z,full stack developer,develop and maintain web apps,egypt,"javascript, react, node.js",true,hybrid,3,6,13000,egp,full time,mid,mansoura,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+11,2024-09-11T20:00:00Z,content writer,create engaging content for websites,egypt,"seo, copywriting, content strategy",true,remote,1,3,6000,egp,part time,junior,fayoum,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+12,2024-09-12T21:00:00Z,product manager,oversee product development lifecycle,egypt,"agile, scrum, roadmapping",true,on site,5,8,18000,egp,full time,senior,zagazig,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+13,2024-09-13T10:00:00Z,hr manager,handle recruitment and employee relations,egypt,"hr management, employee engagement",true,on site,4,6,13000,egp,full time,mid,banha,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+14,2024-09-14T11:00:00Z,quality assurance engineer,test software applications,egypt,"selenium, jira, testrail",true,remote,2,4,9000,egp,full time,junior,cairo,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+15,2024-09-15T12:00:00Z,cloud architect,design cloud-based solutions,egypt,"aws, azure, gcp",true,hybrid,6,10,20000,egp,full time,senior,suez,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+16,2024-09-16T13:00:00Z,marketing specialist,plan and execute marketing campaigns,usa,"digital marketing, seo, content creation",true,remote,2,5,55000,usd,full time,mid,new york,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+17,2024-09-17T14:00:00Z,data scientist,analyze and interpret complex data,india,"python, machine learning, sql",true,hybrid,3,6,1200000,inr,full time,mid,bangalore,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+18,2024-09-18T15:00:00Z,software engineer,design and develop software applications,canada,"c++, python, algorithms",true,on site,4,7,90000,cad,full time,senior,toronto,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+19,2024-09-19T16:00:00Z,technical support specialist,provide technical support to clients,uk,"customer service, troubleshooting, networking",true,remote,1,3,30000,gbp,full time,junior,london,user_2lhdPccCSYD6rGXkpw5rSPAtiWa
+20,2024-09-20T17:00:00Z,blockchain developer,develop blockchain-based applications,germany,"solidity, ethereum, smart contracts",true,remote,3,5,80000,eur,full time,mid,berlin,user_2lhdPccCSYD6rGXkpw5rSPAtiWa

@@ -18,12 +18,16 @@ import {
 import { getCompanies } from '@/api/companiesApi';
 import { getJobs } from '@/api/jobsApi';
 import Loader from '@/components/Loader';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const JobListing = () => {
   const { isLoaded } = useUser();
   const [searchQuery, setSearchQuery] = useState('');
   const [country, setCountry] = useState(''); // Rename from location to country
   const [company_id, setCompany_id] = useState('');
+  const [page, setPage] = useState(1); // Add state for current page
+  const [jobsPerPage] = useState(14); // Set jobs per page
   const { data: companies, fn: fnCompanies } = useFetch(getCompanies);
   const {
     loading: loadingJobs,
@@ -58,9 +62,18 @@ const JobListing = () => {
     setCountry('');
   };
 
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
   if (!isLoaded) {
     return <Loader />;
   }
+
+  // Pagination logic
+  const startIndex = (page - 1) * jobsPerPage;
+  const endIndex = startIndex + jobsPerPage;
+  const paginatedJobs = jobs?.slice(startIndex, endIndex);
 
   return (
     <div className="container mx-auto px-10 lg:px-32">
@@ -75,7 +88,7 @@ const JobListing = () => {
           type="text"
           placeholder="Search Jobs by Title.."
           name="search-query"
-          className="h-full flex-1  px-4 text-md"
+          className="h-full flex-1 px-4 text-md"
         />
         <Button
           type="submit"
@@ -135,21 +148,42 @@ const JobListing = () => {
       {loadingJobs && <Loader />}
 
       {loadingJobs === false && (
-        <ul className="mt-8 grid md:grid-cols-2 gap-4">
+        <>
           {jobs?.length ? (
-            jobs.map((job) => {
-              return (
-                <JobCard
-                  key={job.id}
-                  job={job}
-                  savedInit={job?.saved?.length > 0}
-                />
-              );
-            })
+            <>
+              <ul className="mt-8 grid md:grid-cols-2 gap-4">
+                {paginatedJobs.map((job) => {
+                  return (
+                    <JobCard
+                      key={job.id}
+                      job={job}
+                      savedInit={job?.saved?.length > 0}
+                    />
+                  );
+                })}
+              </ul>
+              {/* Show Pagination only if there are more than jobsPerPage jobs */}
+              {jobs.length > jobsPerPage && (
+                <Stack
+                  spacing={2}
+                  alignItems="center"
+                  className="sticky bottom-0 bg-white py-4"
+                >
+                  <Pagination
+                    count={Math.ceil(jobs.length / jobsPerPage)}
+                    page={page}
+                    onChange={handlePageChange}
+                    shape="rounded"
+                    showFirstButton
+                    showLastButton
+                  />
+                </Stack>
+              )}
+            </>
           ) : (
             <div>No Jobs Found 😢</div>
           )}
-        </ul>
+        </>
       )}
     </div>
   );
