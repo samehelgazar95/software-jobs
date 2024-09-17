@@ -20,6 +20,8 @@ import {
   capitalizeWords,
   capitalizeFirstLetter,
 } from '@/lib/utils';
+import ApplyJobForm from '@/components/jobs/ApplyJobDrawer';
+import ApplicationCard from '@/components/jobs/ApplicationCard';
 
 export default function JobPage() {
   const { id } = useParams();
@@ -60,7 +62,7 @@ export default function JobPage() {
       }).format(date);
     } catch (error) {
       console.error('Error formatting date:', error);
-      return 'Unknown date'; // Return a default message for invalid dates
+      return 'Unknown date';
     }
   })();
 
@@ -180,6 +182,21 @@ export default function JobPage() {
         </ul>
       </div>
 
+      {/* Apply for Job Button */}
+      {job?.recruiter_id !== user?.id && (
+        <div className="flex justify-center mt-8">
+          {/* Center the Apply button */}
+          <ApplyJobForm
+            job={job}
+            user={user}
+            fetchJob={fnJob}
+            applied={job?.applications?.find(
+              (ap) => ap.candidate_id === user.id
+            )}
+          />
+        </div>
+      )}
+
       {/* Applications Section (for Recruiters) */}
       {job?.recruiter_id === user?.id && job?.applications?.length > 0 && (
         <div className="mt-8">
@@ -190,6 +207,15 @@ export default function JobPage() {
           {/* {job?.applications.map((application) => (
             <ApplicationCard key={application.id} application={application} />
           ))} */}
+        </div>
+      )}
+
+      {job?.applications?.length > 0 && job?.recruiter_id === user?.id && (
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-bold">Applicaions</h2>
+          {job?.applications.map((app) => {
+            <ApplicationCard key={app.id} application={app} />;
+          })}
         </div>
       )}
 
