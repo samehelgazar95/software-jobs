@@ -42,3 +42,7 @@ export function capitalizeFirstLetter(str) {
   if (!str) return ''; // Return an empty string if the input is falsy
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
+
+export function generateRandomId(min = 21, max = 1000000) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
