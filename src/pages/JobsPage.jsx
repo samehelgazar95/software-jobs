@@ -21,20 +21,20 @@ import Loader from '@/components/Loader';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-const JobListing = () => {
+export default function JobListing() {
   const { isLoaded } = useUser();
   const [searchQuery, setSearchQuery] = useState('');
-  const [country, setCountry] = useState(''); // Rename from location to country
+  const [country, setCountry] = useState('');
   const [company_id, setCompany_id] = useState('');
-  const [page, setPage] = useState(1); // Add state for current page
-  const [jobsPerPage] = useState(14); // Set jobs per page
+  const [page, setPage] = useState(1);
+  const [jobsPerPage] = useState(14);
   const { data: companies, fn: fnCompanies } = useFetch(getCompanies);
   const {
     loading: loadingJobs,
     data: jobs,
     fn: fnJobs,
   } = useFetch(getJobs, {
-    country, // Use country here
+    country,
     company_id,
     searchQuery,
   });
@@ -47,7 +47,7 @@ const JobListing = () => {
 
   useEffect(() => {
     if (isLoaded) fnJobs();
-  }, [isLoaded, country, company_id, searchQuery]); // Update dependency
+  }, [isLoaded, country, company_id, searchQuery]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -70,14 +70,13 @@ const JobListing = () => {
     return <Loader />;
   }
 
-  // Pagination logic
   const startIndex = (page - 1) * jobsPerPage;
   const endIndex = startIndex + jobsPerPage;
   const paginatedJobs = jobs?.slice(startIndex, endIndex);
 
   return (
     <div className="container mx-auto px-10 lg:px-32">
-      <h1 className="font-extrabold text-6xl sm:text-7xl text-center pb-8">
+      <h1 className="font-bold text-4xl sm:text-6xl text-center pb-4 text-slate-700">
         Latest Jobs
       </h1>
       <form
@@ -99,20 +98,18 @@ const JobListing = () => {
         </Button>
       </form>
 
-      <div className="flex flex-col sm:flex-row gap-2">
+      <div className="flex flex-col sm:flex-row gap-2 mb-6">
         <Select value={country} onValueChange={(value) => setCountry(value)}>
           <SelectTrigger>
             <SelectValue placeholder="Filter by Country" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              {Country.getAllCountries().map(({ name, isoCode }) => {
-                return (
-                  <SelectItem key={isoCode} value={name}>
-                    {name}
-                  </SelectItem>
-                );
-              })}
+              {Country.getAllCountries().map(({ name, isoCode }) => (
+                <SelectItem key={isoCode} value={name}>
+                  {name}
+                </SelectItem>
+              ))}
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -126,13 +123,11 @@ const JobListing = () => {
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              {companies?.map(({ name, id }) => {
-                return (
-                  <SelectItem key={id} value={id}>
-                    {name}
-                  </SelectItem>
-                );
-              })}
+              {companies?.map(({ name, id }) => (
+                <SelectItem key={id} value={id}>
+                  {name}
+                </SelectItem>
+              ))}
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -147,27 +142,29 @@ const JobListing = () => {
 
       {loadingJobs && <Loader />}
 
-      {loadingJobs === false && (
+      {!loadingJobs && (
         <>
           {jobs?.length ? (
             <>
               <ul className="mt-8 grid md:grid-cols-2 gap-4">
-                {paginatedJobs.map((job) => {
-                  return (
-                    <JobCard
-                      key={job.id}
-                      job={job}
-                      savedInit={job?.saved?.length > 0}
-                    />
-                  );
-                })}
+                {paginatedJobs.map((job) => (
+                  <JobCard
+                    key={job.id}
+                    job={job}
+                    savedInit={job?.saved?.length > 0}
+                  />
+                ))}
               </ul>
-              {/* Show Pagination only if there are more than jobsPerPage jobs */}
+
               {jobs.length > jobsPerPage && (
                 <Stack
                   spacing={2}
                   alignItems="center"
-                  className="sticky bottom-0 bg-white py-4"
+                  className="sticky bottom-0 bg-white py-4 shadow-lg rounded-lg"
+                  sx={{
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    zIndex: 10,
+                  }}
                 >
                   <Pagination
                     count={Math.ceil(jobs.length / jobsPerPage)}
@@ -176,6 +173,7 @@ const JobListing = () => {
                     shape="rounded"
                     showFirstButton
                     showLastButton
+                    className="pagination"
                   />
                 </Stack>
               )}
@@ -187,6 +185,4 @@ const JobListing = () => {
       )}
     </div>
   );
-};
-
-export default JobListing;
+}

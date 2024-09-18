@@ -1,26 +1,51 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { PenBox } from 'lucide-react';
+import { PenBox, Menu } from 'lucide-react';
+import { useState } from 'react';
 
 export default function RecruiterBtns() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <div className="flex gap-4">
-      <Link to="/jobs">
-        <Button variant="outline" className="rounded font-bold text-lg">
-          Available Jobs
-        </Button>
-      </Link>
-      <Link to="/post-job">
-        <Button variant="outline" className="rounded font-bold text-lg">
-          <PenBox size={20} className="mr-2" />
-          Post a Job
-        </Button>
-      </Link>
-      <Link to="/my-jobs">
-        <Button variant="outline" className="rounded font-bold text-lg">
-          My Jobs
-        </Button>
-      </Link>
+    <div className="relative">
+      {/* Burger Menu for Mobile */}
+      <button
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="block md:hidden p-2"
+      >
+        <Menu size={30} />
+      </button>
+
+      {/* Full Menu for larger screens */}
+      <div
+        className={`md:flex gap-4 ${menuOpen ? 'block' : 'hidden'} md:block`}
+      >
+        <Link to="/jobs">
+          <Button
+            variant="outline"
+            className="rounded font-medium text-sm md:text-base"
+          >
+            Available Jobs
+          </Button>
+        </Link>
+        <Link to="/post-job">
+          <Button
+            variant="outline"
+            className="rounded font-medium text-sm md:text-base"
+          >
+            <PenBox size={16} className="mr-1" />
+            Post a Job
+          </Button>
+        </Link>
+        <Link to="/my-jobs">
+          <Button
+            variant="outline"
+            className="rounded font-medium text-sm md:text-base"
+          >
+            My Jobs
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

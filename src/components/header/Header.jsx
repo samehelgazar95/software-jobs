@@ -13,11 +13,35 @@ export default function Header() {
   const [showSignInOverlay, setShowSignInOverlay] = useState(false);
   const [showSignUpOverlay, setShowSignUpOverlay] = useState(false);
 
+  // State to control header visibility
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
   useEffect(() => {
     if (searchParams.get('sign-in')) {
       setShowSignInOverlay(true);
     }
   }, [searchParams]);
+
+  // Handle scrolling for header visibility
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Hide header when scrolling down
+      setIsVisible(false);
+    } else {
+      // Show header when scrolling up
+      setIsVisible(true);
+    }
+    setLastScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
 
   const handleLayoutClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -28,8 +52,12 @@ export default function Header() {
   };
 
   return (
-    <header className="container mx-auto">
-      <nav className=" flex justify-between items-center px-10 py-6">
+    <header
+      className={`transition-transform duration-300 w-full ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
+      } sticky top-0 z-50 bg-white shadow-md`}
+    >
+      <nav className="container mx-auto flex justify-between items-center px-10 py-4 mb-4">
         <Link to="/">
           <h2 className="cursor-pointer text-3xl font-extrabold underline decoration-4 decoration-green-500 hover:text-green-500 text-slate-700">
             Software Jobs
@@ -65,39 +93,3 @@ export default function Header() {
     </header>
   );
 }
-
-/* 
-<UserButton.MenuItems>
-                  <UserButton.Link
-                    label="My Jobs"
-                    labelIcon={<Briefcase size={15} />}
-                    href="/my-jobs"
-                  />
-                  <UserButton.Link
-                    label="Saved Jobs"
-                    labelIcon={<Heart size={15} />}
-                    href="/saved-jobs"
-                  />
-                </UserButton.MenuItems>
-                
-                <div className="flex gap-6 justify-center">
-          <Link to="/jobs">
-            <Button
-              variant="link"
-              size="lg"
-              className="p-0 text-lg font-semibold"
-            >
-              For Jobs Seekers
-            </Button>
-          </Link>
-          <Link to="/post-job">
-            <Button
-              variant="link"
-              size="lg"
-              className="p-0 text-lg font-semibold"
-            >
-              For Employers
-            </Button>
-          </Link>
-        </div>
-*/
