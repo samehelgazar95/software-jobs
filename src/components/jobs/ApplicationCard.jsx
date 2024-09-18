@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui//card';
+} from '@/components/ui/card';
 import {
   Select,
   SelectContent,
@@ -17,21 +17,22 @@ import {
 import { updateApplicationStatus } from '@/api/applicationApi';
 import useFetch from '@/hooks/useFetch';
 import Loader from '../Loader';
+import { Button } from '@/components/ui/button';
 
-const ApplicationCard = ({ application, isCandidate = false }) => {
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = application?.resume;
-    link.target = '_blank';
-    link.click();
-  };
-
+export default function ApplicationCard({ application, isCandidate = false }) {
   const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
     updateApplicationStatus,
     {
       job_id: application.job_id,
     }
   );
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = application?.resume;
+    link.target = '_blank';
+    link.click();
+  };
 
   const handleStatusChange = (status) => {
     fnHiringStatus(status).then(() => fnHiringStatus());
@@ -41,17 +42,13 @@ const ApplicationCard = ({ application, isCandidate = false }) => {
     <Card>
       {loadingHiringStatus && <Loader />}
       <CardHeader>
-        <CardTitle className="flex justify-between font-bold">
+        <CardTitle className="font-bold">
           {isCandidate
             ? `${application?.job?.title} at ${application?.job?.company?.name}`
             : application?.name}
-          <Download
-            size={18}
-            className="bg-white text-black rounded-full h-8 w-8 p-1.5 cursor-pointer"
-            onClick={handleDownload}
-          />
         </CardTitle>
       </CardHeader>
+
       <CardContent className="flex flex-col gap-4 flex-1">
         <div className="flex flex-col md:flex-row justify-between">
           <div className="flex gap-2 items-center">
@@ -62,12 +59,26 @@ const ApplicationCard = ({ application, isCandidate = false }) => {
             <School size={15} />
             {application?.education}
           </div>
+        </div>
+        <div className="flex flex-col md:flex-row justify-between">
           <div className="flex gap-2 items-center">
             <Boxes size={15} /> Skills: {application?.skills}
           </div>
+          <Button
+            variant="outline"
+            className="flex gap-4"
+            onClick={handleDownload}
+          >
+            <span>Download resume</span>
+            <Download
+              size={18}
+              className="bg-white text-black cursor-pointer"
+            />
+          </Button>
         </div>
         <hr />
       </CardContent>
+
       <CardFooter className="flex justify-between">
         <span>{new Date(application?.created_at).toLocaleString()}</span>
         {isCandidate ? (
@@ -93,6 +104,4 @@ const ApplicationCard = ({ application, isCandidate = false }) => {
       </CardFooter>
     </Card>
   );
-};
-
-export default ApplicationCard;
+}

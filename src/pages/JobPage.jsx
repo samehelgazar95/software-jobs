@@ -198,24 +198,14 @@ export default function JobPage() {
       )}
 
       {/* Applications Section (for Recruiters) */}
-      {job?.recruiter_id === user?.id && job?.applications?.length > 0 && (
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold text-slate-800 mb-4">
-            Applications
-          </h2>
-          {/* Render application cards here */}
-          {/* {job?.applications.map((application) => (
-            <ApplicationCard key={application.id} application={application} />
-          ))} */}
-        </div>
-      )}
-
       {job?.applications?.length > 0 && job?.recruiter_id === user?.id && (
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold">Applicaions</h2>
-          {job?.applications.map((app) => {
-            <ApplicationCard key={app.id} application={app} />;
-          })}
+          <h2 className="text-3xl font-semibold text-slate-800 mb-4">
+            Applications
+          </h2>
+          {job?.applications?.map((app) => (
+            <ApplicationCard key={app.id} application={app} />
+          ))}
         </div>
       )}
 
