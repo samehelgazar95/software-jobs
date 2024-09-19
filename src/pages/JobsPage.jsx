@@ -1,8 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import { Country } from 'country-state-city'; // Use Country instead of State
-import { BarLoader } from 'react-spinners';
 import useFetch from '@/hooks/useFetch';
 import JobCard from '@/components/jobs/JobCard';
 import { Button } from '@/components/ui/button';

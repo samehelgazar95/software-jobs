@@ -8,9 +8,8 @@ import OnboardingPage from './pages/OnboardingPage';
 import JobsPage from './pages/JobsPage';
 import JobPage from './pages/JobPage';
 import PostJobPage from './pages/recruiter/PostJobPage';
-import MyJobsPage from './pages/recruiter/MyJobsPage';
+import MyJobsPage from './pages/MyJobsPage';
 import BookmarksPage from './pages/candidate/BookmarksPage';
-import ApplicationsPage from './pages/candidate/ApplicationsPage';
 
 // Import your publishable key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -81,7 +80,7 @@ export default function App() {
           path: '/applications',
           element: (
             <PageProtector>
-              <ApplicationsPage />
+              <MyJobsPage />
             </PageProtector>
           ),
         },

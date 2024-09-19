@@ -53,13 +53,11 @@ export default function Header() {
 
   return (
     <header
-      className={`transition-transform duration-300 w-full ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
-      } sticky top-0 z-50 bg-white shadow-md`}
+      className={`transition-transform duration-300 w-full sticky top-0 z-50 bg-white shadow-md mb-6`}
     >
-      <nav className="container mx-auto flex justify-between items-center px-10 py-4 mb-4">
-        <Link to="/">
-          <h2 className="cursor-pointer text-3xl font-extrabold underline decoration-4 decoration-green-500 hover:text-green-500 text-slate-700">
+      <nav className="container mx-auto flex justify-between items-center px-4 sm:px-10 py-6">
+        <Link to="/" className="w-full sm:w-auto">
+          <h2 className="text-center sm:text-left text-3xl font-extrabold underline decoration-4 decoration-green-500 hover:text-green-500 text-slate-700 whitespace-nowrap">
             Software Jobs
           </h2>
         </Link>
@@ -93,3 +91,42 @@ export default function Header() {
     </header>
   );
 }
+
+//   return (
+//     <header className="sticky top-0 z-50 bg-white shadow-md mb-6">
+//       <nav className="container mx-auto flex justify-between items-center px-4 sm:px-10 py-6">
+//         <Link to="/" className="w-full sm:w-auto">
+//           <h2 className="text-center sm:text-left text-3xl font-extrabold underline decoration-4 decoration-green-500 hover:text-green-500 text-slate-700 whitespace-nowrap">
+//             Software Jobs
+//           </h2>
+//         </Link>
+
+//         <div>
+//           <SignedOut>
+//             <SignInUpBtns
+//               setShowSignInOverlay={setShowSignInOverlay}
+//               setShowSignUpOverlay={setShowSignUpOverlay}
+//             />
+//           </SignedOut>
+
+//           <SignedIn>
+//             <div className="flex justify-center items-center gap-4">
+//               {user?.unsafeMetadata?.role === 'recruiter' ? (
+//                 <RecruiterBtns />
+//               ) : user?.unsafeMetadata?.role === 'candidate' ? (
+//                 <CandidateBtns />
+//               ) : null}
+//               <ProfileBtn />
+//             </div>
+//           </SignedIn>
+//         </div>
+
+//         <SignInUpClerk
+//           showSignInOverlay={showSignInOverlay}
+//           showSignUpOverlay={showSignUpOverlay}
+//           handleLayoutClick={handleLayoutClick}
+//         />
+//       </nav>
+//     </header>
+//   );
+// }
