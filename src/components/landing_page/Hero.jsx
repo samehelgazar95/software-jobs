@@ -19,19 +19,6 @@ export default function Hero() {
           <img src="hero-2.webp" alt="hero-1" />
         </div>
       </div>
-
-      {/* <div className="flex gap-6 justify-center">
-          <Link to="/jobs">
-            <Button variant="blue" size="xl">
-              Find Jobs
-            </Button>
-          </Link>
-          <Link to="/post-job">
-            <Button variant="red" size="xl">
-              Post a Job
-            </Button>
-          </Link>
-        </div> */}
     </section>
   );
 }

@@ -38,14 +38,14 @@ export default function JobListing() {
   });
 
   useEffect(() => {
+    if (isLoaded) fnJobs();
+  }, [isLoaded, country, company_id, searchQuery]);
+
+  useEffect(() => {
     if (isLoaded) {
       fnCompanies();
     }
   }, [isLoaded]);
-
-  useEffect(() => {
-    if (isLoaded) fnJobs();
-  }, [isLoaded, country, company_id, searchQuery]);
 
   const handleSearch = (e) => {
     e.preventDefault();
