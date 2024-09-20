@@ -1,15 +1,21 @@
-import { getJobs } from '@/api/jobsApi';
-import useFetch from '@/hooks/useFetch';
-import { useEffect } from 'react';
+import { jobsData } from '@/lib/data';
+import JobCard from './JobCard';
 
 export default function JobsList() {
-  const { loading: loadingJobs, data: jobs, fn: fnJobs } = useFetch(getJobs);
+  const handleClick = () => {
+    console.log('Job clicked');
+  };
 
-  useEffect(() => {
-    fnJobs();
-  }, []);
-
-  console.log(jobs);
-
-  return <div></div>;
+  return (
+    <div>
+      <h1 className="font-bold text-4xl sm:text-6xl text-center mb-4 mt-6 text-slate-700">
+        Recent Jobs
+      </h1>
+      <ul className="container mx-auto mt-8 grid md:grid-cols-2 gap-4">
+        {jobsData.map((job) => (
+          <JobCard key={job.id} job={job} onClick={handleClick} />
+        ))}
+      </ul>
+    </div>
+  );
 }

@@ -81,8 +81,8 @@ const ReviewCard = ({ img, name }) => {
 
 export function MarqueeDemo() {
   return (
-    <div className="pb-4 relative flex  w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
-      <h2 className="py-4 text-2xl font-semibold text-gray-900 dark:text-gray-100 text-center">
+    <div className="pb-4 mt-4 relative flex  w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+      <h2 className="py-4 my-4 text-2xl font-semibold text-gray-900 dark:text-gray-100 text-center">
         Trusted by Leading Software Companies
       </h2>
       <Marquee pauseOnHover className="[--duration:45s]">

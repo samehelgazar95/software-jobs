@@ -18,6 +18,7 @@ export default function JobCard({
   savedInit = false,
   onJobAction = () => {},
   isMyJob = false,
+  onClick,
 }) {
   const { user } = useUser();
   const [saved, setSaved] = useState(savedInit);
@@ -62,7 +63,10 @@ export default function JobCard({
   }, [savedJob]);
 
   return (
-    <li className="border border-slate-200 rounded-lg p-4 mb-4 hover:shadow-lg hover:border-slate-300 hover:bg-slate-50 transition-shadow transition-colors duration-300">
+    <li
+      className="border border-slate-200 rounded-lg p-4 mb-4 hover:shadow-lg hover:border-slate-300 hover:bg-slate-50 transition-shadow transition-colors duration-300"
+      onClick={onClick}
+    >
       {/* Job Header */}
       <div className="flex justify-between items-start mb-4">
         <div>

@@ -67,7 +67,7 @@ const AddCompanyDrawer = ({ fetchCompanies }) => {
           Add Company
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="mx-auto w-3/4 px-28">
         <DrawerHeader>
           <DrawerTitle>Add a New Company</DrawerTitle>
         </DrawerHeader>

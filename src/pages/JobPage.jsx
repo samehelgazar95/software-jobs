@@ -203,9 +203,11 @@ export default function JobPage() {
           <h2 className="text-3xl font-semibold text-slate-800 mb-4">
             Applications
           </h2>
-          {job?.applications?.map((app) => (
-            <ApplicationCard key={app.id} application={app} />
-          ))}
+          <div className="space-y-4">
+            {job?.applications?.map((app) => (
+              <ApplicationCard key={app.id} application={app} />
+            ))}
+          </div>
         </div>
       )}
 
